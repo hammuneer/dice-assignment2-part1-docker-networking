@@ -1,0 +1,13 @@
+$ docker run -d --name httpd_container --network my_network -p 8081:80 httpd
+9f552fb33e3990912ff06040ad312e7a826ff6cc357347f85fa6240427049d08
+
+$ docker ps --filter name=httpd_container
+CONTAINER ID   IMAGE     COMMAND              CREATED         STATUS         PORTS                                     NAMES
+9f552fb33e39   httpd     "httpd-foreground"   2 seconds ago   Up 2 seconds   0.0.0.0:8081->80/tcp, [::]:8081->80/tcp   httpd_container
+
+$ docker logs httpd_container
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.21.0.3. Set the 'ServerName' directive globally to suppress this message
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.21.0.3. Set the 'ServerName' directive globally to suppress this message
+[Tue Nov 17 09:14:06.945338 2026] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.69 (Unix) configured -- resuming normal operations
+[Tue Nov 17 09:14:06.946615 2026] [core:notice] [pid 1:tid 1] AH00094: Command line: 'httpd -D FOREGROUND'
+

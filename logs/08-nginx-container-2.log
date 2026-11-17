@@ -1,0 +1,19 @@
+$ docker run -d --name nginx_container_2 --network my_network -p 8082:80 nginx
+6cf3e0600c03e0ebfc0b90c66d4e6c390a85738c1c06b71a014e4be26f7cb38c
+
+$ docker ps --filter name=nginx_container_2
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                                     NAMES
+6cf3e0600c03   nginx     "/docker-entrypoint.…"   2 seconds ago   Up 2 seconds   0.0.0.0:8082->80/tcp, [::]:8082->80/tcp   nginx_container_2
+
+$ docker logs nginx_container_2 2>&1 | tail -5
+2026/11/17 09:14:51 [notice] 1#1: start worker process 40
+2026/11/17 09:14:51 [notice] 1#1: start worker process 41
+2026/11/17 09:14:51 [notice] 1#1: start worker process 42
+2026/11/17 09:14:51 [notice] 1#1: start worker process 43
+2026/11/17 09:14:51 [notice] 1#1: start worker process 44
+
+$ docker network inspect my_network --format '{{range .Containers}}{{.Name}} -> {{.IPv4Address}}{{println}}{{end}}'
+nginx_container_2 -> 172.21.0.2/16
+httpd_container -> 172.21.0.3/16
+
+

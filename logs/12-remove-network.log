@@ -1,0 +1,13 @@
+$ docker network rm my_network
+my_network
+
+$ docker network ls
+NETWORK ID     NAME                     DRIVER    SCOPE
+986d9975fe78   bridge                   bridge    local
+2757ab452ea0   clef-workbench_default   bridge    local
+f221261fca99   datatobi_default         bridge    local
+c53396e2a286   host                     host      local
+d5ebb8b36fbc   islamic_app_default      bridge    local
+2b03c64677d9   minikube                 bridge    local
+8233a9c271b8   none                     null      local
+

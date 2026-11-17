@@ -1,0 +1,15 @@
+$ curl -s -o /dev/null -w 'HTTP status: %{http_code}
+' http://localhost:8081
+HTTP status: 200
+
+$ curl -s http://localhost:8081
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>It works! Apache httpd</title>
+</head>
+<body>
+<p>It works!</p>
+</body>
+</html>
+

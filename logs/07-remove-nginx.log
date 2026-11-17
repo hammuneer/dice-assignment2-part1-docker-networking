@@ -1,0 +1,18 @@
+$ docker stop nginx_container
+nginx_container
+
+$ docker rm nginx_container
+nginx_container
+
+$ docker ps -a --filter name=nginx_container
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+$ docker network inspect my_network --format '{{range .Containers}}{{.Name}} -> {{.IPv4Address}}{{println}}{{end}}'
+httpd_container -> 172.21.0.3/16
+
+
+$ curl -s -o /dev/null -w 'HTTP status: %{http_code}
+' http://localhost:8080 || echo 'Connection refused - port 8080 no longer served'
+HTTP status: 000
+Connection refused - port 8080 no longer served
+

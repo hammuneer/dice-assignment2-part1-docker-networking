@@ -1,0 +1,21 @@
+$ docker container ls
+CONTAINER ID   IMAGE                                 COMMAND                  CREATED          STATUS          PORTS                                                                                                                                  NAMES
+6cf3e0600c03   nginx                                 "/docker-entrypoint.…"   10 seconds ago   Up 9 seconds    0.0.0.0:8082->80/tcp, [::]:8082->80/tcp                                                                                                nginx_container_2
+9f552fb33e39   httpd                                 "httpd-foreground"       55 seconds ago   Up 54 seconds   0.0.0.0:8081->80/tcp, [::]:8081->80/tcp                                                                                                httpd_container
+05416b4f6fef   gcr.io/k8s-minikube/kicbase:v0.0.51   "/usr/local/bin/entr…"   2 days ago       Up 2 days       127.0.0.1:57629->22/tcp, 127.0.0.1:57628->2376/tcp, 127.0.0.1:57626->5000/tcp, 127.0.0.1:57627->8443/tcp, 127.0.0.1:57625->32443/tcp   minikube
+
+$ docker container ls --filter network=my_network
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                     NAMES
+6cf3e0600c03   nginx     "/docker-entrypoint.…"   10 seconds ago   Up 9 seconds    0.0.0.0:8082->80/tcp, [::]:8082->80/tcp   nginx_container_2
+9f552fb33e39   httpd     "httpd-foreground"       55 seconds ago   Up 54 seconds   0.0.0.0:8081->80/tcp, [::]:8081->80/tcp   httpd_container
+
+$ docker container ls --filter network=my_network --format 'table {{.Names}}	{{.Image}}	{{.Status}}	{{.Ports}}	{{.Networks}}'
+NAMES               IMAGE     STATUS          PORTS                                     NETWORKS
+nginx_container_2   nginx     Up 9 seconds    0.0.0.0:8082->80/tcp, [::]:8082->80/tcp   my_network
+httpd_container     httpd     Up 54 seconds   0.0.0.0:8081->80/tcp, [::]:8081->80/tcp   my_network
+
+$ docker container ls --filter network=my_network --size
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                     NAMES               SIZE
+6cf3e0600c03   nginx     "/docker-entrypoint.…"   10 seconds ago   Up 9 seconds    0.0.0.0:8082->80/tcp, [::]:8082->80/tcp   nginx_container_2   81.9kB (virtual 177MB)
+9f552fb33e39   httpd     "httpd-foreground"       55 seconds ago   Up 54 seconds   0.0.0.0:8081->80/tcp, [::]:8081->80/tcp   httpd_container     36.9kB (virtual 130MB)
+

@@ -1,0 +1,8 @@
+$ curl -s -o /dev/null -w 'HTTP status: %{http_code}
+' http://localhost:8080
+HTTP status: 200
+
+$ curl -s http://localhost:8080 | grep -i '<title>\|<h1>'
+<title>Welcome to nginx!</title>
+<h1>Welcome to nginx!</h1>
+

@@ -1,0 +1,69 @@
+$ docker network inspect my_network
+[
+    {
+        "Name": "my_network",
+        "Id": "b53588b73690995ab4be89b019e3d046f960dcf09eec1347106b921b5f3f88f9",
+        "Created": "2026-11-17T09:13:47.959179134Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.21.0.0/16",
+                    "Gateway": "172.21.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.enable_ipv4": "true",
+            "com.docker.network.enable_ipv6": "false"
+        },
+        "Labels": {},
+        "Containers": {
+            "03e77b6c8dc7dea841d0b5cc94468d023cc9d8752a7f85c87b70cefeb58f3ace": {
+                "Name": "nginx_container",
+                "EndpointID": "e3ac005f185408d0c92d4256d61ecedfba266b15dc20cc9dc34f378e2081880b",
+                "MacAddress": "8e:a1:04:44:b0:61",
+                "IPv4Address": "172.21.0.2/16",
+                "IPv6Address": ""
+            },
+            "9f552fb33e3990912ff06040ad312e7a826ff6cc357347f85fa6240427049d08": {
+                "Name": "httpd_container",
+                "EndpointID": "eb328164c7b56d119848d6aedf8c5cf0500ffd179d87cf03664c7d6cf1de2266",
+                "MacAddress": "e6:7c:3d:e0:00:7b",
+                "IPv4Address": "172.21.0.3/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.21.0.0/16": {
+                        "IPsInUse": 5,
+                        "DynamicIPsAvailable": 65531
+                    }
+                }
+            }
+        }
+    }
+]
+
+$ docker network inspect my_network --format '{{range .IPAM.Config}}Subnet={{.Subnet}} Gateway={{.Gateway}}{{end}}'
+Subnet=172.21.0.0/16 Gateway=172.21.0.1
+
+$ docker network inspect my_network --format '{{range .Containers}}{{.Name}} -> {{.IPv4Address}}{{println}}{{end}}'
+nginx_container -> 172.21.0.2/16
+httpd_container -> 172.21.0.3/16
+
+

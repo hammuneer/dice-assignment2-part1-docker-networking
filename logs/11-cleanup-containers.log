@@ -1,0 +1,11 @@
+$ docker stop nginx_container_2 httpd_container
+nginx_container_2
+httpd_container
+
+$ docker rm nginx_container_2 httpd_container
+nginx_container_2
+httpd_container
+
+$ docker container ls -a --filter name=nginx_container --filter name=httpd_container
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+

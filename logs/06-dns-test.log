@@ -1,0 +1,14 @@
+$ docker exec nginx_container curl -s http://httpd_container
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>It works! Apache httpd</title>
+</head>
+<body>
+<p>It works!</p>
+</body>
+</html>
+
+$ docker exec nginx_container getent hosts httpd_container
+172.21.0.3      httpd_container
+

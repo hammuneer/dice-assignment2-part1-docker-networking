@@ -1,0 +1,7 @@
+$ docker network create --driver bridge my_network
+b53588b73690995ab4be89b019e3d046f960dcf09eec1347106b921b5f3f88f9
+
+$ docker network ls --filter name=my_network
+NETWORK ID     NAME         DRIVER    SCOPE
+b53588b73690   my_network   bridge    local
+
